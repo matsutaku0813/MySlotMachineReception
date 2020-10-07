@@ -13,7 +13,7 @@
 
       this.stop = document.createElement('div');
       this.stop.textContent = 'STOP';
-      this.stop.classList.add('stop', 'inactive');
+      this.stop.classList.add('stop','inactive');
       this.stop.addEventListener('click', () => {
         if (this.stop.classList.contains('inactive')) {
           return;
@@ -40,6 +40,7 @@
     getRandomImage() {
       const images = [
         'img/seven.png',
+        'img/bell.png',
       ];
       return images[Math.floor(Math.random() * images.length)];
     }
@@ -52,17 +53,18 @@
     }
 
     isUnmatched(p1, p2) {
+      // if(this.img.src!==p1.img.src&&this.img.src!==p2.img.src){
+      //   return true;
+      // }else{
+      //   return false;
+      // }
       return this.img.src !== p1.img.src && this.img.src !== p2.img.src;
     }
     unmatch() {
       this.img.classList.add('unmatched');
     }
 
-    ismatched(p1, p2, p3) {
-      return this.img.src === p1.img.src && this.img.src === p2.img.src && this.img.src === p3.img.src;
-    }
-
-    activate() {
+    activate(){
       this.img.classList.remove('unmatched');
       this.stop.classList.remove('inactive');
     }
@@ -72,18 +74,12 @@
   function checkResult() {
     if (panels[0].isUnmatched(panels[1], panels[2])) {
       panels[0].unmatch();
-      result.textContent = 'Unmatched...'
     }
     if (panels[1].isUnmatched(panels[0], panels[2])) {
       panels[1].unmatch();
-      result.textContent = 'Unmatched...'
     }
     if (panels[2].isUnmatched(panels[1], panels[0])) {
       panels[2].unmatch();
-      result.textContent = 'Unmatched...'
-    }
-    if (panels[2].ismatched(panels[0], panels[1], panels[2])) {
-      result.textContent = 'Matched!!'
     }
   }
 
@@ -104,7 +100,6 @@
     panels.forEach(panel => {
       panel.activate();
       panel.spin();
-      result.textContent = 'Result is...'
     });
   });
 }

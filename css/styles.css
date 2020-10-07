@@ -57,8 +57,3 @@ main{
 .inactive{
   opacity: 0.5;
 }
-
-#result{
-  text-align: center;
-  margin-top: 10px;
-}
